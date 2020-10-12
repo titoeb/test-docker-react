@@ -8,6 +8,7 @@ RUN npm run build
 
 # Stage 2: Run the app with nginx.
 FROM nginx
+EXPOSE 80
 COPY --from=0 /app/build /usr/share/nginx/html
 
 
