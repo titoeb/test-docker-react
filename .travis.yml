@@ -8,3 +8,16 @@ before_install:
  
 script:
   - docker run -e CI=true titoeb/test-docker-react npm run test -- --coverage
+
+# This won't work, but at least it should fail at the right moment.
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-east-1'
+  app: 'docker'
+  env: 'docker-env'
+  bucket_name: 'elasticbeanstalk-us-east-1-923445559289'
+  bucket_path: 'docker'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
